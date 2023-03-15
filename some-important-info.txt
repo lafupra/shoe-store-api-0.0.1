@@ -1,0 +1,62 @@
+(1).How To retrieve only some some fields of the user model for optimum performence
+
+
+
+In Mongoose, you can use the select() method to retrieve only specific fields from a document in your user model. This can be useful for optimizing performance by reducing the amount of data that needs to be transferred over the network or read from the database.
+
+Here's an example of how to retrieve only the username and email fields from a user document:
+
+
+User.findOne({ _id: userId }).select('username email').exec((err, user) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(user);
+  }
+});
+
+
+In this example, we're using the findOne() method to find a user document with a specific _id. We then chain the select() method to specify that we only want to retrieve the username and email fields. Finally, we call the exec() method to execute the query and handle any errors or results.
+
+
+You can also use the minus sign (-) in the select() method to exclude specific fields. For example, if you wanted to retrieve all fields except for the password field, you could do:
+
+
+User.findOne({ _id: userId }).select('-password').exec((err, user) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(user);
+  }
+});
+Keep in mind that while selecting specific fields can improve performance, it may not always be practical depending on the requirements of your application. In some cases, you may need to retrieve the entire document to perform certain operations or to display all of the data to the user.
+
+
+
+
+(2).queries
+
+
+
+Book.find({
+  author: 'J.K. Rowling',
+  price: { $gte: 10, $lte: 20 },
+  genres: { $in: ['Fantasy', 'Young Adult'] },
+  publishedDate: { $gte: new Date('2000-01-01'), $lte: new Date('2022-01-01') },
+  ratings: { $elemMatch: { $gte: 4, $lte: 5 } },
+  $or: [
+    { language: { $exists: false } },
+    { language: { $type: 'string' } }
+  ]
+}, (err, books) => {
+  if (err) {
+    console.error(err);
+    res.status(500).send('An error occurred');
+  } else {
+    res.json(books);
+  }
+});
+
+
+to match insensitivaly = /searchString/i
+
