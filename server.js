@@ -11,19 +11,7 @@ import mongoose from "mongoose"
 const app = express()
 
 
-const Connect = async () =>  {
-  try {
-    mongoose.set('strictQuery', false)
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-     
-    });
-    console.log('Connected to database');
-  } catch (err) {
-    console.error('Failed to connect to database:', err);
-  }
-}
+
 
 
 
@@ -34,7 +22,16 @@ dotenv.config()
 app.use(cors())
 app.use(express.json())
 
-Connect()
+mongoose.connect(process.env.MONGO_URI, function(error) {
+  if (error) {
+    console.error('Error connecting to database:', error);
+  } else {
+    console.log('Database connection successful');
+    app.listen(process.env.PORT, function() {
+      console.log(`Server started on port ${process.env.PORT}`);
+    });
+  }
+});
 
 app.get("/",(req,res) => {
   res.send("it's working")
@@ -48,9 +45,7 @@ app.use("/api/order",OrderRoute)
 
 
 
-app.listen(process.env.PORT,() => {  
-  
-  console.log("server working")})
+
 
 
 
