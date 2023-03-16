@@ -29,16 +29,7 @@ app.get("/",(req,res) => {
 })
 
 
-mongoose.connect(process.env.MONGO_URI, function(error) {
-  if (error) {
-    console.error('Error connecting to database:', error);
-  } else {
-    console.log('Database connection successful');
-    app.listen(process.env.PORT, function() {
-      console.log(`Server started on port ${process.env.PORT}`);
-    });
-  }
-});
+
 
 
 app.use("/api/user",UserRoute)
@@ -49,7 +40,16 @@ app.use("/api/order",OrderRoute)
 
 
 
-
+mongoose.connect(process.env.MONGO_URI, function(error) {
+  if (error) {
+    console.error('Error connecting to database:', error);
+  } else {
+    console.log('Database connection successful');
+    app.listen(process.env.PORT, function() {
+      console.log(`Server started on port ${process.env.PORT}`);
+    });
+  }
+});
 
 
 
