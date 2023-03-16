@@ -22,6 +22,13 @@ dotenv.config()
 app.use(cors())
 app.use(express.json())
 
+
+
+app.get("/",(req,res) => {
+  res.send("it's working")
+})
+
+
 mongoose.connect(process.env.MONGO_URI, function(error) {
   if (error) {
     console.error('Error connecting to database:', error);
@@ -33,9 +40,6 @@ mongoose.connect(process.env.MONGO_URI, function(error) {
   }
 });
 
-app.get("/",(req,res) => {
-  res.send("it's working")
-})
 
 app.use("/api/user",UserRoute)
 app.use("/api/auth",AuthRoute)
