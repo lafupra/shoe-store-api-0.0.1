@@ -19,6 +19,7 @@ const app = express()
 dotenv.config()
 app.use(cors())
 app.use(express.json())
+Connect() 
 
 
 app.use("/api/user",UserRoute)
@@ -39,5 +40,5 @@ app.get("/",(req,res) => {
 
 
 app.listen(process.env.PORT,() => {  
-  Connect() 
+  
   console.log("server working")})
