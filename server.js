@@ -36,6 +36,10 @@ app.use(express.json())
 
 Connect()
 
+app.get("/",(req,res) => {
+  res.send("it's working")
+})
+
 app.use("/api/user",UserRoute)
 app.use("/api/auth",AuthRoute)
 app.use("/api/product",ProductRoute)
