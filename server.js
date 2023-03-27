@@ -16,7 +16,7 @@ dotenv.config()
 
 
 
-
+console.log(process.env.MONGO_URI)
 
 
 const app = express()
@@ -63,11 +63,11 @@ app.use("/api",PaymentRouter)
 
     app.listen(process.env.PORT,  () => {
       mongoose.set('strictQuery', false)
-      mongoose.connect(process.env.MONGO_URI, function(error) {
+      mongoose.connect(process.env.MONGO_URI, (error) => {
         if (error) {
           console.error('Error connecting to database:', error);
           mongoose.connect(process.env.MONGO_URI)
-        } else {
+        }else{
           console.log('Database connection successful');}
         }
         )
