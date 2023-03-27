@@ -16,7 +16,7 @@ dotenv.config()
 
 
 
-console.log(process.env.MONGO_URI)
+
 
 
 const app = express()
@@ -63,7 +63,7 @@ app.use("/api",PaymentRouter)
 
     app.listen(process.env.PORT,  () => {
       mongoose.set('strictQuery', false)
-      mongoose.connect(process.env.MONGO_URI, (error) => {
+      mongoose.connect("mongodb+srv://praful:praful26297@cluster0.avjl5.mongodb.net/shoe-selling-site?retryWrites=true&w=majority", (error) => {
         if (error) {
           console.error('Error connecting to database:', error);
           mongoose.connect(process.env.MONGO_URI)
