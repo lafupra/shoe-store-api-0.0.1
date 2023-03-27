@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
   },
   upiRefNo: {
     type: String,
-    required: true,
+    required: false,
   },
   address: {
     type: String,
@@ -42,6 +42,20 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  razorpay_order_id:{
+      type: String,
+      required: false,
+    },
+    razorpay_payment_id:{
+      type: String,
+      required: false,
+    },
+    razorpay_signature:{
+      type: String,
+      required: false,
+    }
+  
+
 },
 { 
   timestamps: true
