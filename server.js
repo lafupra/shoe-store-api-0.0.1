@@ -63,7 +63,11 @@ app.use("/api",PaymentRouter)
 
     app.listen(process.env.PORT,  () => {
       mongoose.set('strictQuery', false)
-      mongoose.connect(process.env.MONGO_URI, (error) => {
+      mongoose.connect(process.env.MONGO_URI,{
+        useCreateIndex:true,
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+    }, (error) => {
         if (error) {
           console.error('Error connecting to database:', error);
           mongoose.connect(process.env.MONGO_URI)
