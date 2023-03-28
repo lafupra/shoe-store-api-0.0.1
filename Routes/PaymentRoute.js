@@ -62,7 +62,7 @@ router.post("/verification/:oid", async (req,res) => {
               
             
         }catch(err){
-            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailer")
+            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailure")
             // console.log(err)
             // res.status(500).send(err)
         }
@@ -72,7 +72,7 @@ router.post("/verification/:oid", async (req,res) => {
         
       
         }else{
-            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailer")
+            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailure")
             // res.status(500).send("not same")
         }
          
