@@ -56,15 +56,15 @@ router.post("/verification/:oid", async (req,res) => {
              
               if(!updatedorder) return res.status(404).json("order not saved")
         
-            //   res.status(200).redirect("http://localhost:3001/paymentsuccess")
+               res.status(200).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentsuccess")
 
-            res.status(200).json(updatedorder)
+            // res.status(200).json(updatedorder)
               
             
         }catch(err){
-            // res.status(500).redirect("some error occoured in submiting data in mongoose")
-            console.log(err)
-            res.status(500).send(err)
+            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailer")
+            // console.log(err)
+            // res.status(500).send(err)
         }
               
         
@@ -72,8 +72,8 @@ router.post("/verification/:oid", async (req,res) => {
         
       
         }else{
-            // res.status(500).redirect("some error occoured due to signatures not having same or not having signature")
-            res.status(500).send("not same")
+            res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailer")
+            // res.status(500).send("not same")
         }
          
     
@@ -83,8 +83,9 @@ router.post("/verification/:oid", async (req,res) => {
        
         
     }catch(err){
-        console.log(err)
-        res.status(500).json(err)
+        // console.log(err)
+        // res.status(500).json(err)
+        res.status(500).redirect("https://heroic-starburst-d59ecb.netlify.app/paymentfailer")
     }
 
 })
